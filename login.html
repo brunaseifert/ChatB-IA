@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login ou Cadastro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background-color: #2b003d;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      position: relative;
+    }
+
+    .left h1 {
+      color: #d28cff;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      gap: 15px;
+    }
+
+    .form-group input {
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      background-color: #3e0059;
+      color: white;
+    }
+
+    .form-group input::placeholder {
+      color: #ccc;
+    }
+
+    .form-group button {
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #9a00ff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-group button:hover {
+      background-color: #c400ff;
+    }
+
+    .bottom-link {
+      margin-top: 20px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .bottom-link a {
+      color: #d28cff;
+      text-decoration: none;
+    }
+
+    .bottom-link a:hover {
+      text-decoration: underline;
+    }
+
+    .right {
+      flex: 1;
+      background: url('assets/Whisk_790b91cb8f.jpg') no-repeat center center;
+      background-size: cover;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #d28cff;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: #d28cff;
+    }
+
+   
+    .troca-idioma {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .troca-idioma button {
+      background-color: transparent;
+      border: 2px solid #d28cff;
+      color: #d28cff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .troca-idioma button:hover {
+      background-color: #d28cff;
+      color: #2b003d;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .right {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left">
+
+    <a href="index.html" class="back-btn">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Voltar
+    </a>
+
+
+    <div class="troca-idioma">
+      <button id="botao-idioma">EN</button>
+    </div>
+
+    <h1 id="titulo">Crie sua conta</h1>
+    <form class="form-group" id="form-cadastro">
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="senha" placeholder="Senha" required />
+      <button type="submit" id="botao-cadastrar">Cadastrar</button>
+    </form>
+    <div class="bottom-link" id="texto-link">
+      Já tem uma conta? <a href="#">Entrar</a>
+    </div>
+  </div>
+
+  <div class="right"></div>
+
+  <script>
+    let idiomaAtual = 'pt';
+
+    const traducoes = {
+      pt: {
+        titulo: "Crie sua conta",
+        nomePlaceholder: "Seu nome",
+        emailPlaceholder: "Email",
+        senhaPlaceholder: "Senha",
+        botaoCadastrar: "Cadastrar",
+        textoLink: 'Já tem uma conta? <a href="#">Entrar</a>',
+        botaoIdioma: "EN"
+      },
+      en: {
+        titulo: "Create your account",
+        nomePlaceholder: "Your name",
+        emailPlaceholder: "Email",
+        senhaPlaceholder: "Password",
+        botaoCadastrar: "Register",
+        textoLink: 'Already have an account? <a href="#">Sign in</a>',
+        botaoIdioma: "PT"
+      }
+    };
+
+    const botaoIdioma = document.getElementById('botao-idioma');
+
+    botaoIdioma.addEventListener('click', () => {
+      idiomaAtual = idiomaAtual === 'pt' ? 'en' : 'pt';
+      const t = traducoes[idiomaAtual];
+
+      document.getElementById('titulo').textContent = t.titulo;
+      document.getElementById('nome').placeholder = t.nomePlaceholder;
+      document.getElementById('email').placeholder = t.emailPlaceholder;
+      document.getElementById('senha').placeholder = t.senhaPlaceholder;
+      document.getElementById('botao-cadastrar').textContent = t.botaoCadastrar;
+      document.getElementById('texto-link').innerHTML = t.textoLink;
+      botaoIdioma.textContent = t.botaoIdioma;
+    });
+  </script>
+  
+</body>
+</html>
